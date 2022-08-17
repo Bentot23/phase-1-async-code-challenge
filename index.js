@@ -1,6 +1,7 @@
 // code here
 const baseUrl = 'http://localhost:3000/shows'
 const showListsContainer = document.querySelector('#list')
+const queuedShowLists = document.querySelector('#queued')
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -29,9 +30,12 @@ const getShows = () => {
 const clickToLink = () => {
     const showLists = document.querySelectorAll('li#showList')
       showLists.forEach(lists => {
-        console.log(lists)
-        lists.addEventListener('click', () => {
-            console.log('Clicked')
+        // console.log(lists)
+        lists.addEventListener('click', (e) => {
+            // console.log('Clicked')
+            // console.log(e.target.dataset.name)
+            queuedShowLists.innerHTML += `<li id="queuedList" href="#" data-name="${e.target.dataset.name}">${e.target.dataset.name}</li>`
+
         })
     })
 }
