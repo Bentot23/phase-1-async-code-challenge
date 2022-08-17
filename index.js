@@ -1,11 +1,12 @@
 // code here
 const baseUrl = 'http://localhost:3000/shows'
-const showLists = document.querySelector('#list')
+const showListsContainer = document.querySelector('#list')
 
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM Loaded!')
     getShows()
+
 })
 
 const getShows = () => {
@@ -13,11 +14,25 @@ const getShows = () => {
     .then(res => res.json())
     .then(data => {
         // console.log(data)
-        showLists.innerHTML = ''
+        showListsContainer.innerHTML = ''
         data.map(show => {
-            console.log(show)
-            showLists.innerHTML += `<li>${show.title}</li>`
+            // console.log(show)
+            showListsContainer.innerHTML += 
+            `<li id="showList" href="#" data-name="${show.title}">${show.title}</li>`
+            
+        })
+        clickToLink()
+
+    })
+}
+
+const clickToLink = () => {
+    const showLists = document.querySelectorAll('li#showList')
+      showLists.forEach(lists => {
+        console.log(lists)
+        lists.addEventListener('click', () => {
+            console.log('Clicked')
         })
     })
-    
 }
+
