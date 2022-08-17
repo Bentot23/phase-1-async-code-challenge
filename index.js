@@ -1,7 +1,7 @@
 // code here
 const baseUrl = 'http://localhost:3000/shows'
 const showListsContainer = document.querySelector('#list')
-const queuedShowLists = document.querySelector('#queued')
+const queuedShowListsContainer = document.querySelector('#queued')
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -19,7 +19,7 @@ const getShows = () => {
         data.map(show => {
             // console.log(show)
             showListsContainer.innerHTML += 
-            `<li id="showList" href="#" data-name="${show.title}">${show.title}</li>`
+            `<li id="showList" href="#" data-title="${show.title}">${show.title}</li>`
             
         })
         clickToLink()
@@ -30,13 +30,31 @@ const getShows = () => {
 const clickToLink = () => {
     const showLists = document.querySelectorAll('li#showList')
       showLists.forEach(lists => {
-        // console.log(lists)
+        console.log(lists)
         lists.addEventListener('click', (e) => {
             // console.log('Clicked')
-            // console.log(e.target.dataset.name)
-            queuedShowLists.innerHTML += `<li id="queuedList" href="#" data-name="${e.target.dataset.name}">${e.target.dataset.name}</li>`
+            // console.log(e.target.dataset.title)
+            queuedShowListsContainer.innerHTML += `<li id="queuedList" href="#" data-title="${e.target.dataset.title}">${e.target.dataset.title}</li>`
+        removeQueued()
 
+        })
+
+    })
+
+}
+
+const removeQueued = () => {
+    const queuedLists = document.querySelectorAll('li#queuedList')
+    queuedLists.forEach(lists => {
+        console.log(lists)
+        lists.addEventListener('click', (e) => {
+            // console.log(e.target)
+            e.target.remove()
+            
         })
     })
 }
 
+const searchShow = () => {
+
+}
